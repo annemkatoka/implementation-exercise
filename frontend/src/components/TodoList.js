@@ -88,6 +88,8 @@ function TodoList(props) {
       );
       console.log("Ok");
       setGet(true);
+      if(props.setGet)
+        props.setGet(false)
       setEdit(false);
     } catch (e) {
       console.log(e);
@@ -169,6 +171,8 @@ function TodoList(props) {
 
   return (
     <div>
+          {console.log(props.setGet)}
+
       {edit ? (
         <>
           <div className="row">
@@ -223,7 +227,7 @@ function TodoList(props) {
                   marginBottom: "30px",
                 }}
               >
-                To-Do List
+               {props.title? props.title: "To-Do List"}
               </h2>
             </div>
           </div>

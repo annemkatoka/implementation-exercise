@@ -4,6 +4,8 @@ import TodoList from "./TodoList";
 function FolderList(props) {
   const [folders, setFolders] = useState([]);
   const [get, setGet] = useState(false);
+  const [getItem, setGetItem] = useState(false);
+
   const [folder, setFolder] = useState({
     id: "",
     title: "",
@@ -16,7 +18,7 @@ function FolderList(props) {
     id_folder: ""
   }]);
 
-  const [edit, setEdit] = useState(false);
+  const [folderTitle, setFolderTitle] = useState("");
 
   const [viewItems, setViewItems] = useState(false);
 
@@ -47,6 +49,30 @@ function FolderList(props) {
     }
 
   };
+
+
+  const getItems = async (id, title) => {
+    const url2 = `http://localhost:5000/item/folder/${folder.id}`;
+    setViewItems(true); 
+    setFolder({id:id, title:title}); 
+
+
+    try{
+
+      const res2 = await fetch(url2);
+      const result2 = await res2.json();
+
+  
+      setItems(result2);
+      setGetItem(true); 
+
+      console.log(result2)
+    }catch(e){
+      console.log(e)
+    }
+
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -147,11 +173,11 @@ function FolderList(props) {
 
   return (
     <div>
-      {true ? (
+      {viewItems ? (
         <>
           <div className="row">
             <div className="col-sm-12">
-                <TodoList list={items} />
+                <TodoList list={items} title={`Folders > ${folder.title}`} setGet={setGet}/>
             </div>
           </div>
         </>
@@ -186,6 +212,7 @@ function FolderList(props) {
                 </label>{" "}
                 <button
                   className="button col-sm-3"
+                  onClick={() => getItems(folder.id, folder.title)}
                 >
                   View Items
                 </button>
