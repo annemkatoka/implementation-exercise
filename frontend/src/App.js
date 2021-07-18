@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,13 +9,16 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 import FolderList from "./components/FolderList";
 import Login from "./pages/Login";
+import {AuthContext, AuthProvider} from './context/AuthContext';
 
 function App() {
+  const [auth, setAuth] = useContext(AuthContext);
   const [token, setToken] = useState(false);
 
   return (
     <div className="App">
       <Router>
+        <AuthProvider values={[auth, setAuth]}>
         {token ? (
           <>
             <div className="container mt-5">
@@ -40,7 +43,9 @@ function App() {
             </Route>{" "}
           </Switch>
         )}
+        </AuthProvider>
       </Router>
+      
     </div>
   );
 }

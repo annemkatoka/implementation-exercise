@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
 
 
@@ -33,6 +33,8 @@ const Login = (props) => {
         );
         console.log("Ok");
         console.log(response.status);
+        localStorage.setItem('token',response.token);
+        console.log(response)
         if (response.status != "200"){setError(true)}
         else{
             history.push('/');
