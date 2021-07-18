@@ -30,6 +30,19 @@ exports.getAllItems = async (req, res, next) => {
     }
 }
 
+//Get items by folder id
+exports.getItemsByFolder = async (req, res, next) => {
+    const id = req.params.Id;
+    try {
+        const items = await Item.findAll({ where: {id_folder: id}}); 
+        res.json(items);        
+    
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
 //Get item by Id
 exports.getItem = async (req, res, next) => {
     const id = req.params.Id;

@@ -13,12 +13,13 @@ module.exports =  function(){
     router.post('/item', itemController.newItem);
     //Get items
     router.get('/item', itemController.getAllItems);
+    //Get items by folder ib
+    router.get('/item/folder/:Id', itemController.getItemsByFolder);
     //Get Item by ID
     router.get('/item/:Id', itemController.getItem);
     //Update
     router.put('/item/:Id', itemController.updateItem);
     //Delete
-    //router.delete('/personas/:IdPersona', auth, personaController.DeletePersona);//VERIFICAR
     router.delete('/item/:Id', itemController.deleteItem);
 
 
@@ -32,7 +33,6 @@ module.exports =  function(){
     //Update
     router.put('/folder/:Id', folderController.updateFolder);
     //Delete
-    //router.delete('/personas/:IdPersona', auth, personaController.DeletePersona);//VERIFICAR
     router.delete('/folder/:Id', folderController.deleteFolder);
 
 

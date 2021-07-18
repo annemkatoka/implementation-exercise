@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import TodoList from "./components/TodoList";
+import FolderList from "./components/FolderList";
 import Login from "./pages/Login";
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
                 <Switch>
                   <Route path="/" exact>
                     <div className="col-sm-6">
-                      <TodoList />
+                      <TodoList list={[]} />
+                    </div>{" "}
+                    <div className="col-sm-6">
+                      <FolderList />
                     </div>{" "}
                   </Route>{" "}
                 </Switch>

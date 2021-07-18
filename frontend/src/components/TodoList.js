@@ -23,13 +23,22 @@ function TodoList(props) {
   }, [get]);
 
   const getItems = async () => {
-    const url = `http://localhost:5000/item`;
 
-    const res = await fetch(url);
-    const result = await res.json();
+    console.log(props.list.length)
+    if(props.list.length){
+      setList(props.list);
+      setGet(false);
 
-    setList(result);
-    setGet(false);
+    }else{
+      const url = `http://localhost:5000/item`;
+
+      const res = await fetch(url);
+      const result = await res.json();
+  
+      setList(result);
+      setGet(false);
+    }
+
   };
 
   const handleSubmit = async (e) => {

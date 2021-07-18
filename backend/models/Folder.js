@@ -6,6 +6,7 @@ const db =  require('../config/db');
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true
       },
       title: {
         type: Sequelize.STRING,
